@@ -1,12 +1,15 @@
 #!/usr/bin/env ruby
 require 'gli'
-begin # XXX: Remove this begin/rescue before distributing your app
 require 'mmw'
+require 'rubygems'
+include GLI::App
+
+
 
 class App
   extend GLI::App
 
-  program_desc 'Describe your application here'
+  program_desc 'Write and produce music'
 
   version Mmw::VERSION
 
