@@ -4,7 +4,7 @@ require 'mmw'
 require 'rubygems'
 include GLI::App
 
-
+PROJECT_DIR = File.expand_path('~/My-Project')
 
 class App
   extend GLI::App
@@ -14,15 +14,11 @@ class App
   version Mmw::VERSION
 
   subcommand_option_handling :normal
-  arguments :strict
 
-  desc 'Describe some switch here'
-  switch [:s,:switch]
-
-  desc 'Describe some flag here'
-  default_value 'the default'
-  arg_name 'The name of the argument'
-  flag [:f,:flagname]
+  desc 'Path to the project folder'
+  default_value PROJECT_DIR
+  arg_name 'project_folder'
+  flag [:f,:foldername]
 
   desc 'Describe create here'
   arg_name 'Describe arguments to create here'
@@ -30,8 +26,8 @@ class App
     c.desc 'Describe a switch to create'
     c.switch :s
 
-    c.desc 'Describe a flag to create'
-    c.default_value 'default'
+    c.desc 'Specify project filepath'
+    c.default_value '~/.'
     c.flag :f
     c.action do |global_options,options,args|
 
