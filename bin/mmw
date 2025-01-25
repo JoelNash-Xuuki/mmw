@@ -26,8 +26,6 @@ class App
     c.desc 'Describe a switch to create'
     c.switch :s
 
-    c.desc 'Specify project filepath'
-    c.default_value '~/.'
     c.flag :f
     c.action do |global_options,options,args|
 
