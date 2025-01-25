@@ -1,0 +1,5 @@
+= mmw
+
+Generate this with
+    mmw _doc
+After you have described your command line interface

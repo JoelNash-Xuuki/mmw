@@ -1,0 +1,6 @@
+= mmw
+
+Describe your project here
+
+:include:mmw.rdoc
+
