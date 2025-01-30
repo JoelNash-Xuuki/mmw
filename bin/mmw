@@ -18,7 +18,7 @@ class App
   desc 'Path to the project folder'
   default_value PROJECT_DIR
   arg_name 'project_folder'
-  flag [:f,:foldername]
+  flag [:f,:projname]
 
   desc 'Describe create here'
   arg_name 'Describe arguments to create here'
@@ -28,7 +28,7 @@ class App
     c.flag :f
 
     c.action do |global_options,options,args|
-      projpath = options[:foldername] || PROJECT_DIR                                 
+      projpath = File.expand_path(global_options[:f] || PROJECT_DIR)
                                                                                      
       if Dir.exist?(projpath)                                                        
         puts "Directory exists"                                                      
