@@ -25,16 +25,41 @@ class App
   command :create do |c|
     c.desc 'Describe a switch to create'
     c.switch :s
-
     c.flag :f
+
     c.action do |global_options,options,args|
-
-      # Your command logic here
-
-      # If you have any errors, just raise them
-      # raise "that command made no sense"
-
-      puts "create command ran"
+      projpath = options[:foldername] || PROJECT_DIR                                 
+                                                                                     
+      if Dir.exist?(projpath)                                                        
+        puts "Directory exists"                                                      
+      else                                                                           
+        print "#{projpath} does not exist. Do you want to create it? y or n: "       
+        choice = $stdin.gets.chomp                                                   
+                                                                                     
+        if choice.downcase == 'y'                                                    
+          directories = [                                                            
+            projpath,                                                                
+            "#{projpath}/score",                                                     
+            "#{projpath}/.bin",                                                      
+            "#{projpath}/session",                                                   
+            "#{projpath}/sound-design",                                              
+            "#{projpath}/audio",                                                     
+            "#{projpath}/images",                                                    
+            "#{projpath}/images/stills",                                             
+            "#{projpath}/images/movies",                                             
+            "#{projpath}/audio/mix",                                                 
+            "#{projpath}/audio/stems",                                               
+            "#{projpath}/audio/stems/recorded"                                       
+          ]                                                                          
+                                                                                     
+          directories.each { |dir| Dir.mkdir(dir) unless Dir.exist?(dir) }           
+                                                                                     
+          system("ffmpeg -f lavfi -i anullsrc=channel_layout=stereo:sample_rate=48000 -t 5 '#{projpath}/audio/stems/recorded/input.wav'")                              
+          puts "#{projpath} created"                                                 
+        else                                                                         
+          puts "#{projpath} not created"                                             
+        end                                                                          
+      end                                                                            
     end
   end
 
@@ -77,3 +102,4 @@ class App
 end
 
 exit App.run(ARGV)
+                                                                               
