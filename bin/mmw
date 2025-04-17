@@ -22,7 +22,7 @@ class App
 
   desc 'Describe create here'
   arg_name 'Describe arguments to create here'
-  command :create do |c|
+  command :session do |c|
     c.desc 'Describe a switch to create'
     c.switch :s
     c.flag :f
@@ -39,17 +39,7 @@ class App
         if choice.downcase == 'y'                                                    
           directories = [                                                            
             projpath,                                                                
-            "#{projpath}/score",                                                     
-            "#{projpath}/.bin",                                                      
-            "#{projpath}/session",                                                   
-            "#{projpath}/sound-design",                                              
-            "#{projpath}/audio",                                                     
-            "#{projpath}/images",                                                    
-            "#{projpath}/images/stills",                                             
-            "#{projpath}/images/movies",                                             
-            "#{projpath}/audio/mix",                                                 
-            "#{projpath}/audio/stems",                                               
-            "#{projpath}/audio/stems/recorded"                                       
+            "#{projpath}/projname.eca",                                                   
           ]                                                                          
                                                                                      
           directories.each { |dir| Dir.mkdir(dir) unless Dir.exist?(dir) }           
@@ -102,4 +92,3 @@ class App
 end
 
 exit App.run(ARGV)
-                                                                               
