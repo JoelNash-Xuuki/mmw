@@ -4,3 +4,4 @@ Feature: Artist can render a midi and pdf file
 
 Scenario: Render a .ly file
   Given the file "/tmp/My-Project" does exist
+  And the file "/tmp/My-Project/song.ly" does exist
