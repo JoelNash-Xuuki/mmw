@@ -1,8 +1,10 @@
 #!/usr/bin/env ruby
 require 'gli'
 require 'mmw'
+require 'score.rb'
 require 'rubygems'
 include GLI::App
+include Score
 
 PROJECT_DIR = File.expand_path('~/My-Project')
 
@@ -57,7 +59,7 @@ class App
   arg_name 'Describe arguments to score here'
   command :score do |c|
     c.action do |global_options,options,args|
-      puts "score command ran"
+      render_score()
     end
   end
 
