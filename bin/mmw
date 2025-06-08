@@ -5,7 +5,6 @@ require 'score.rb'
 require 'rubygems'
 include GLI::App
 include Score
-include SoundDesign
 
 PROJECT_DIR = File.expand_path('~/My-Project')
 

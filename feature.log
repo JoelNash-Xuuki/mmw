@@ -1,0 +1,49 @@
+Feature: Artist can render a midi and pdf file
+  A musician will need to write musical scores, and use a midi file
+  to support the sound design for the score.
+
+  Scenario: Render a .ly file                             # features/mmw.feature:5
+    Given the file '/tmp/song.ly' exists                  # features/step_definitions/cli_steps.rb:1
+GNU LilyPond 2.24.4 (running Guile 3.0)
+Processing `/tmp/song.ly'
+Parsing...
+Interpreting music...
+Preprocessing graphical objects...
+Interpreting music...
+MIDI output to `song.mid'...
+Finding the ideal number of pages...
+Fitting music on 1 page...
+Drawing systems...
+Converting to `song.pdf'...
+Success: compilation successfully completed
+    When Artist successfully run `mmw score /tmp/song.ly` # features/step_definitions/cli_steps.rb:5
+    Then `/tmp/song.mid` should exist                     # features/step_definitions/cli_steps.rb:15
+      
+      expected true
+           got false
+       (RSpec::Expectations::ExpectationNotMetError)
+      ./features/step_definitions/cli_steps.rb:16:in 'block in <top (required)>'
+      /usr/bin/rake:25:in 'Kernel#load'
+      /usr/bin/rake:25:in '<main>'
+      features/mmw.feature:8:in ``/tmp/song.mid` should exist'
+    And `/tmp/song.pdf` should exist                      # features/step_definitions/cli_steps.rb:11
+
+Failing Scenarios:
+cucumber features/mmw.feature:5 # Scenario: Render a .ly file
+
+1 scenario (1 failed)
+4 steps (1 failed, 1 skipped, 2 passed)
+0m1.113s
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ Share your Cucumber Report with your team at https://reports.cucumber.io     │
+│                                                                              │
+│ Command line option:    --publish                                            │
+│ Environment variable:   CUCUMBER_PUBLISH_ENABLED=true                        │
+│ cucumber.yml:           default: --publish                                   │
+│                                                                              │
+│ More information at https://cucumber.io/docs/cucumber/environment-variables/ │
+│                                                                              │
+│ To disable this message, specify CUCUMBER_PUBLISH_QUIET=true or use the      │
+│ --publish-quiet option. You can also add this to your cucumber.yml:          │
+│ default: --publish-quiet                                                     │
+└──────────────────────────────────────────────────────────────────────────────┘
