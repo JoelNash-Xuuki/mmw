@@ -3,7 +3,7 @@ Given('the file {string} exists') do |string|
 end
 
 When('Artist successfully run `mmw -f \/tmp\/My-Project\/ score Song.ly`') do
-  command = "bundle exec bin/mmw score song.ly"
+  command = "bundle exec bin/mmw score /tmp/song.ly"
   @output = `#{command}`
   expect($?.exitstatus).to eq(0)
 end

@@ -5,6 +5,7 @@ require 'score.rb'
 require 'rubygems'
 include GLI::App
 include Score
+include SoundDesign
 
 PROJECT_DIR = File.expand_path('~/My-Project')
 
@@ -55,11 +56,18 @@ class App
     end
   end
 
-  desc 'Describe score here'
-  arg_name 'Describe arguments to score here'
+  desc 'Consume a lilypond file and render a pdf and midi file'
+  arg_name 'Lilypond_file'
+
   command :score do |c|
     c.action do |global_options,options,args|
-      render_score()
+      render_score(global_options,options,args)
+    end
+  end
+
+  command :sounddesign do |c|
+    c.action do |global_options,options,args|
+      render_sound(global_options,options,args)
     end
   end
 

@@ -4,6 +4,6 @@ Feature: Artist can render a midi and pdf file
 
 Scenario: Render a .ly file
   Given the file 'Song.ly' exists
-  When Artist successfully run `mmw -f /tmp/My-Project/ score Song.ly`
+  When Artist successfully run `mmw score /tmp/Song.ly`
   Then `/tmp/My-Project/Song.mid` should exist 
   And  `/tmp/My-Project/Song.mid` should exist
