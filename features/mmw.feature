@@ -3,6 +3,4 @@ Feature: Artist can render a midi and pdf file
   to support the sound design for the score.
 
 Scenario: Render a .ly file
-  Given the file "/tmp/song.ly" does exist
-
-
+  Given the file "/tmp/My-Project" does exist
