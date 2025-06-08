@@ -3,7 +3,7 @@ Feature: Artist can render a midi and pdf file
   to support the sound design for the score.
 
 Scenario: Render a .ly file
-  Given the file 'Song.ly' exists
-  When Artist successfully run `mmw score /tmp/Song.ly`
-  Then `/tmp/My-Project/Song.mid` should exist 
-  And  `/tmp/My-Project/Song.mid` should exist
+  Given the file '/tmp/song.ly' exists
+  When Artist successfully run `mmw score /tmp/song.ly`
+  Then `/tmp/song.mid` should exist 
+  And  `/tmp/song.pdf` should exist

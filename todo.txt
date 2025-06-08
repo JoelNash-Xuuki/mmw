@@ -1,1 +1,1 @@
-render score pdf and midi file
+- Maybe config again now so lilyscore and modsyn can consume same  data for tempo and key etc
