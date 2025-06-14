@@ -6,7 +6,7 @@ require 'rubygems'
 include GLI::App
 include Score
 
-PROJECT_DIR = File.expand_path('~/My-Project')
+PROJECT_DIR = File.expand_path('/tmp/My-Project')
 
 class App
   extend GLI::App
