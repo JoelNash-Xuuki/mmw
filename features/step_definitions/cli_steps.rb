@@ -6,6 +6,6 @@ Given('Artist successfully runs `mmw -f {string} score {string}`') do |string, s
   command = "bundle exec bin/mmw -f #{string} score #{string2}"
   @output = `#{command}`                                                                                                                                                    
   expect($?.exitstatus).to eq(0)
-  expect(@output).to include("Success: Score rendering completed successfully.")
+  expect(@output).to include("Success: .ly file built")
 end
 
