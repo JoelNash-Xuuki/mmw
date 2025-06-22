@@ -1,10 +1,12 @@
 module Score
   def build_score(global_options,options,args)
-    puts "score command to build ly file"
-    sheetName = args.first
-    command = "sheetbuilder Track-10 xuuki song-title vyvn patches/testPatch-3 test-song > /dev/null 2>&1 && rm Track-10_*"
-    # command = "lilypond -dmidi-extension=mid -o /tmp/My-Project #{lilypondFileName} > /dev/null 2>&1"
+    sheetName = options[:filename]
+    location = global_options[:n]
+   
+    command = "sheetbuilder #{sheetName} xuuki song-title vyvn patches/testPatch-3 test-song > /dev/null 2>&1 && rm #{sheetName}_* && mv #{sheetName}.ly #{location}"
+
     @output = `#{command}`
+
     if $?.exitstatus == 0                                                                                             
        puts "Success: .ly file built"                                                         
     else                                                                                                              
@@ -13,9 +15,10 @@ module Score
   end
 
   def render_score(global_options,options,args)
-    puts "score command ran from class"
-    lilypondFileName = args.first
-    command = "lilypond -dmidi-extension=mid -o /tmp/My-Project #{lilypondFileName} > /dev/null 2>&1"
+    lilypondFileName = options[:filename]
+    location = global_options[:n]
+    puts "#{location}/#{lilypondFileName}.ly"
+    command = "lilypond -dmidi-extension=mid -o #{location} #{location}/#{lilypondFileName}.ly > /dev/null 2>&1"
     @output = `#{command}`
     if $?.exitstatus == 0                                                                                             
        puts "Success: Score rendering completed successfully."                                                         
