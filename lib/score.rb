@@ -17,7 +17,7 @@ module Score
   def render_score(global_options,options,args)
     lilypondFileName = options[:filename]
     location = global_options[:n]
-    puts "#{location}/#{lilypondFileName}.ly"
+    puts "#{location}#{lilypondFileName}.ly"
     command = "lilypond -dmidi-extension=mid -o #{location} #{location}/#{lilypondFileName}.ly > /dev/null 2>&1"
     @output = `#{command}`
     if $?.exitstatus == 0                                                                                             
