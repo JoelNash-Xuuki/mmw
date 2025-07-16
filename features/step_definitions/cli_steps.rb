@@ -5,6 +5,9 @@ end
 Given /^the file "([^"]*)" doesn't exist$/ do |file|                        
   unless File.exist?(file)                                                  
     FileUtils.mkdir_p(file) # Create directory if it doesn't exist          
+    notes_dir = "#{file}/notes"
+    Dir.mkdir(notes_dir) unless Dir.exist?(notes_dir)
+    File.write("#{notes_dir}/ns-6001", "d1")
   end                                                                       
 end
 
