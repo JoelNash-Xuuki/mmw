@@ -21,11 +21,13 @@ module Score
     lilypondFileName = options[:filename]
     location = global_options[:n]
     puts "#{location}#{lilypondFileName}.ly"
-    command = "lilypond -dmidi-extension=mid -o #{location} #{location}/#{lilypondFileName}.ly > /dev/null 2>&1"
+    command = "lilypond -dmidi-extension=mid -o #{location} #{lilypondFileName} > /dev/null 2>&1"
     @output = `#{command}`
     if $?.exitstatus == 0                                                                                             
        puts "Success: Score rendering completed successfully."                                                         
     else                                                                                                              
+      puts "Error: Score rendering failed."                                                                              
+      puts "Details: #{@output}"  # Print the captured error output                                                      
       raise RuntimeError, "Error: Score rendering failed."                                                            
     end
   end
