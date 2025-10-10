@@ -10,4 +10,3 @@ Scenario: Render a .ly file
   And the file "patches/testPatch-3" does exist
   And Artist successfully runs `mmw -n "/tmp/My-Project" score "--filename=/tmp/My-Project/song.ly"`
 
-
