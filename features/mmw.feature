@@ -8,6 +8,6 @@ Scenario: Render a .ly file
   Given the file "/tmp/My-Project" doesn't exist
   Then the file "/tmp/My-Project" is created
   And the file "patches/testPatch-3" does exist
-  And Artist successfully runs `mmw -n "/tmp/My-Project" score "/tmp/My-Project/song.ly"`
+  And Artist successfully runs `mmw -n "/tmp/My-Project" score "--filename=/tmp/My-Project/song.ly"`
 
 

@@ -1,6 +1,31 @@
 = mmw
 
+requires lilygen
+
 Describe your project here
 
 :include:mmw.rdoc
+
+Did you use cat -n README.md to display me?
+
+Use 'eval "$(sed -n '8p' README.md)"' to execute the lilypond cmd on line 8.
+
+```
+  rake features
+```
+
+
+= xuuki-do-list
+gem install bundle
+gem install rake # add rake to PATH
+
+bundle install --path vendor/bundle
+
+:include:xuuki-do-list.rdoc
+
+gem install cucumber
+gem install mocha
+gem install rspec
+gem install rdoc
+
 

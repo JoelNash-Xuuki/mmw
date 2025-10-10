@@ -17,7 +17,6 @@ class App
     Write and produce music. User needs to manually make 'notes-ns' file -
     before using score command and after the session is created.
   """
-
   version Mmw::VERSION
 
   subcommand_option_handling :normal
