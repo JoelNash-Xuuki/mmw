@@ -1,9 +1,20 @@
 module Score
   def build_score(global_options, options, args)                                                                         
-   sheetName = options[:filename]                                                                                       
    location = global_options[:n]                                                                                        
 
-   command = "sheetbuilder #{sheetName} xuuki song-title vyvn patches/testPatch-3 test-song"                            
+   sheetName = "#{location}/#{options[:filename]}" 
+   patch = "#{location}/#{options[:patch]}"
+   service = "#{options[:patch]}"
+   title = "#{options[:title]}"
+   artist = "#{options[:artist]}"
+
+   puts "#{sheetName}"
+   puts "#{service}"
+   puts "#{title}"
+   puts "#{artist}"
+   puts "#{patch}"
+
+   command = "sheetbuilder #{sheetName} #{service} #{title} #{artist} #{patch}"                            
                                                                                                                         
    # Capture both stdout and stderr                                                                                     
    @output = `#{command} 2>&1`                                                                                          
@@ -18,9 +29,12 @@ module Score
  end  
 
   def render_score(global_options,options,args)
-    lilypondFileName = options[:filename]
     location = global_options[:n]
-    puts "#{location}#{lilypondFileName}.ly"
+
+    lilypondFileName = "#{location}/#{options[:filename]}"
+
+    puts "#{lilypondFileName}"
+
     command = "lilypond -dmidi-extension=mid -o #{location} #{lilypondFileName} > /dev/null 2>&1"
     @output = `#{command}`
     if $?.exitstatus == 0                                                                                             

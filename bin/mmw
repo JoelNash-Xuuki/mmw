@@ -2,10 +2,15 @@
 $LOAD_PATH << File.expand_path(File.dirname(__FILE__) + '/../lib')
 require 'gli'
 require 'mmw'
+
 require 'score.rb'
+include Score
+
+require 'sounddesign.rb'
+include SoundDesigner
+
 require 'rubygems'
 include GLI::App
-include Score
 
 PROJECT_DIR = File.expand_path('~/My-Project')
 
@@ -60,11 +65,23 @@ class App
   end
 
   desc 'Create a .ly file'
-  arg_name '<filename>'
   command :score do |c|
     c.desc 'Name of the lilypond file'
+
     c.arg_name 'filename'
     c.flag :filename
+
+    c.arg_name 'service'
+    c.flag :service
+
+    c.arg_name 'title'
+    c.flag :title
+
+    c.arg_name 'artist'
+    c.flag :artist
+
+    c.arg_name 'patch'
+    c.flag :patch
 
     c.action do |global_options,options,args|
       build_score(global_options,options,args)
@@ -73,8 +90,17 @@ class App
   end
 
   command :sounddesign do |c|
+    c.arg_name 'patch'
+    c.flag :patch
+  
+    c.arg_name 'csound'
+    c.flag :csound
+  
+    c.arg_name 'midichn'
+    c.flag :midichn
+
     c.action do |global_options,options,args|
-      render_sound(global_options,options,args)
+     render_sound(global_options,options,args)
     end
   end
 

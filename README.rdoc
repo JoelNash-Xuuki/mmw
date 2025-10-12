@@ -1,6 +1,7 @@
 = mmw
 
-requires lilygen
+requires lilygen for score build
+requires modsyn for sound render
 
 Describe your project here
 

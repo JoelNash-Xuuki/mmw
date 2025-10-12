@@ -11,8 +11,8 @@ Given /^the file "([^"]*)" doesn't exist$/ do |file|
   end                                                                       
 end
 
-Given('Artist successfully runs `mmw -n {string} score {string}`') do |string, string2|
-  command = "bundle exec bin/mmw -n #{string} score #{string2}"
+Given('Artist successfully runs `mmw -n {string} score {string} {string} {string} {string} {string}`') do |string, string2, string3, string4, string5, string6|
+  command = "bundle exec bin/mmw -n #{string} score #{string2}  #{string3} #{string4} #{string5} #{string6}"
   @output = `#{command}`                                                                                                                                                    
   expect($?.exitstatus).to eq(0)
   expect(@output).to include("Success: .ly file built")
@@ -24,4 +24,12 @@ Then('the file {string} is created') do |file|
   end                                                                       
   puts "#{file} exists."                                                    
 end                                                                         
+
+Given('Artist successfully runs `mmw -n {string} sounddesign {string} {string} {string}`') do |string, string2, string3, string4|
+  command = "bundle exec bin/mmw -n #{string} sounddesign #{string2} #{string3} #{string4}"
+  @output = `#{command}`                                                                                                                                                    
+  expect($?.exitstatus).to eq(0)
+  expect(@output).to include("Success: Csound file created successfully.")
+end
+
   

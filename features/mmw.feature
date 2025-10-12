@@ -4,9 +4,9 @@ Feature: Artist can render a midi and pdf file
   /tmp/My-Project and create the file and dir /tmp/My-Project/notes/ns-6001 containing lilypond
   note(s).
 
-Scenario: Render a .ly file
+Scenario: Render a .ly and .csd file
   Given the file "/tmp/My-Project" doesn't exist
   Then the file "/tmp/My-Project" is created
   And the file "patches/testPatch-3" does exist
-  And Artist successfully runs `mmw -n "/tmp/My-Project" score "--filename=/tmp/My-Project/song.ly"`
-
+  And Artist successfully runs `mmw -n "/tmp/My-Project" score "--filename=song" "--service=xuuki" "--title=songtitle" "--artist=artist" "--patch=patches/testPatch-3"`
+  And Artist successfully runs `mmw -n "/tmp/My-Project" sounddesign "--patch=patches/mpatch3" "--csound=feature.csd" "--midichn=1"`
