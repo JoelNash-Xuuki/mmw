@@ -27,11 +27,11 @@ module SoundDesigner
    location = global_options[:n]                                                                                                                                          
    midiChn = options[:midichn]                                                                                                                                            
    csdFile = "#{location}/#{options[:csound]}"                                                                                                                            
-                                                                                                                                                                          
+                                                                                                                                                                      
    puts "#{csdFile}"                                                                                                                                                      
    puts "#{midiChn}"                                                                                                                                                      
                                                                                                                                                                           
-   command = "csound -d -o #{csdFile}-#{midiChn}.wav #{csdFile}"                                                                                                          
+   command = "csound -d -o #{location}/stems/track-#{midiChn}.wav #{csdFile}"                                                                                                          
    stdout, stderr, status = Open3.capture3(command)                                                                                                                       
                                                                                                                                                                           
    if status.success?                                                                                                                                                     
