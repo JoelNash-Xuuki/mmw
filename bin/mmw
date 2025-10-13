@@ -100,7 +100,8 @@ class App
     c.flag :midichn
 
     c.action do |global_options,options,args|
-     render_sound(global_options,options,args)
+     render_sound_design_file(global_options,options,args)
+     render_sound_audio_file(global_options,options,args)
     end
   end
 
