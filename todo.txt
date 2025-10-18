@@ -1,2 +1,3 @@
+- add mix to play back sound
 - i think mmw needs the definition for the option sound design?
 - Maybe config again now so lilyscore and modsyn can consume same  data for tempo and key etc

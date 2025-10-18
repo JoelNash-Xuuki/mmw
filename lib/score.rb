@@ -30,13 +30,16 @@ module Score
 
   def render_score(global_options,options,args)
     location = global_options[:n]
+    puts "Rendering score: "
 
     lilypondFileName = "#{location}/#{options[:filename]}"
 
     puts "#{lilypondFileName}"
+    puts "#{location}"
 
     command = "lilypond -dmidi-extension=mid -o #{location} #{lilypondFileName} > /dev/null 2>&1"
     @output = `#{command}`
+    puts "#{command}"
     if $?.exitstatus == 0                                                                                             
        puts "Success: Score rendering completed successfully."                                                         
     else                                                                                                              
