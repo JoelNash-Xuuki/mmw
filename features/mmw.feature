@@ -10,4 +10,4 @@ Scenario: Render a .ly and .csd file
   Then the file "/tmp/My-Project" is created
   And the file "patches/testPatch-3" does exist
   And Artist successfully runs `mmw -n "/tmp/My-Project" score "--filename=song" "--service=xuuki" "--title=songtitle" "--artist=artist" "--patch=patches/testPatch-3"`
-  And Artist successfully runs `mmw -n "/tmp/My-Project" sounddesign "--patch=patches/mpatch3" "--csound=feature.csd" "--midichn=3"`
+  And Artist successfully runs `mmw -n "/tmp/My-Project" sounddesign "--patch=patches/mpatch3" "--filename=song" "--csound=feature.csd" "--midichn=3"`

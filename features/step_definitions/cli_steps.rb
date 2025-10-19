@@ -25,8 +25,8 @@ Then('the file {string} is created') do |file|
   puts "#{file} exists."                                                    
 end                                                                         
 
-Given('Artist successfully runs `mmw -n {string} sounddesign {string} {string} {string}`') do |string, string2, string3, string4|
-  command = "bundle exec bin/mmw -n #{string} sounddesign #{string2} #{string3} #{string4}"
+Given('Artist successfully runs `mmw -n {string} sounddesign {string} {string} {string} {string}`') do |string, string2, string3, string4, string5|
+  command = "bundle exec bin/mmw -n #{string} sounddesign #{string2} #{string3} #{string4} #{string5}"
   @output = `#{command}`                                                                                                                                                    
   expect($?.exitstatus).to eq(0)
   expect(@output).to include("Success: Csound file created successfully.")

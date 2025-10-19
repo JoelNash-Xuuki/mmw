@@ -92,6 +92,9 @@ class App
   command :sounddesign do |c|
     c.arg_name 'patch'
     c.flag :patch
+
+    c.arg_name 'filename'
+    c.flag :filename
   
     c.arg_name 'csound'
     c.flag :csound

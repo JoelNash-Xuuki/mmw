@@ -4,7 +4,7 @@ module SoundDesigner
   def render_sound_design_file(global_options,options,args)
     location = global_options[:n]
 
-    patchName = "#{location}/#{options[:patch]}"                                                                                                                         
+    patchName = "#{location}/#{options[:patch]}"
     csdFile = "#{location}/#{options[:csound]}"                                                                                                                          
     midiChn = options[:midichn]
 
@@ -27,11 +27,13 @@ module SoundDesigner
    location = global_options[:n]                                                                                                                                          
    midiChn = options[:midichn]                                                                                                                                            
    csdFile = "#{location}/#{options[:csound]}"                                                                                                                            
+   fileName = "#{location}/#{options[:filename]}"
                                                                                                                                                                       
    puts "#{csdFile}"                                                                                                                                                      
    puts "#{midiChn}"                                                                                                                                                      
+   puts "#{fileName}"
                                                                                                                                                                           
-   command = "csound -d -o #{location}/stems/track-#{midiChn}.wav #{csdFile}"                                                                                                          
+   command = "csound -d -o #{location}/stems/track-#{midiChn}.wav -F #{fileName}.mid #{csdFile}"                                                                                                          
    stdout, stderr, status = Open3.capture3(command)                                                                                                                       
                                                                                                                                                                           
    if status.success?                                                                                                                                                     
