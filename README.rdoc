@@ -29,4 +29,42 @@ gem install mocha
 gem install rspec
 gem install rdoc
 
+## 🛠️ How to Install AutoTalent on Arch
+
+1. **Use the AUR**
+   AutoTalent is available on the Arch User Repository (AUR). ([AUR][1])
+
+   * Clone the AUR package:
+
+     ```bash
+     git clone https://aur.archlinux.org/autotalent.git
+     cd autotalent
+     ```
+   * Build and install:
+
+     ```bash
+     makepkg -si
+     ```
+   * This builds the LADSPA plugin and installs it. The AUR package depends on `ladspa`, so make sure you have that installed. ([AUR][1])
+
+2. **Verify / Use**
+
+   * After installation, you should have a `.so` plugin (e.g. `autotalent.so`) in your LADSPA plugin directory (commonly `/usr/lib/ladspa` or similar).
+   * Use it in a DAW or audio host that supports LADSPA plugins.
+
+---
+
+## ⚠️ Things to Be Careful Of
+
+* The AUR package pulls the source from the official AutoTalent site: `http://tombaran.info/autotalent.html` ([AUR][2])
+* Because it's an old plugin, it might not build cleanly depending on your system, but many people have used the AUR version successfully.
+* Always review the PKGBUILD before building AUR packages, especially for audio plugins.
+* Make sure you have the `base-devel` group installed (for `makepkg`) and enough tools (GCC, make, etc).
+
+---
+
+If you like, I can check for a **more up-to-date or maintained alternative** to AutoTalent (e.g. an LV2 pitch-corrector) that might work better on modern systems — do you want me to do that?
+
+[1]: https://aur.archlinux.org/packages/autotalent?utm_source=chatgpt.com "AUR (en) - autotalent"
+[2]: https://aur.archlinux.org/cgit/aur.git/tree/.SRCINFO?h=autotalent&utm_source=chatgpt.com ".SRCINFO - aur.git - AUR Package Repositories"
 
