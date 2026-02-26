@@ -1,6 +1,14 @@
 #!/usr/bin/env ruby
+$LOAD_PATH << File.expand_path(File.dirname(__FILE__) + '/../lib')
 require 'gli'
 require 'mmw'
+
+require 'score.rb'
+include Score
+
+require 'sounddesign.rb'
+include SoundDesigner
+
 require 'rubygems'
 include GLI::App
 
@@ -8,9 +16,12 @@ PROJECT_DIR = File.expand_path('~/My-Project')
 
 class App
   extend GLI::App
+  config_file File.join(ENV['HOME'],'.mmw.rc.yaml')
 
-  program_desc 'Write and produce music'
-
+  program_desc """
+    Write and produce music. User needs to manually make 'notes-ns' file -
+    before using score command and after the session is created.
+  """
   version Mmw::VERSION
 
   subcommand_option_handling :normal
@@ -18,33 +29,82 @@ class App
   desc 'Path to the project folder'
   default_value PROJECT_DIR
   arg_name 'project_folder'
-  flag [:f,:foldername]
+  flag [:n,:projname]
 
   desc 'Describe create here'
-  arg_name 'Describe arguments to create here'
-  command :create do |c|
+  arg_name 'Project Name'
+  command :session do |c|
     c.desc 'Describe a switch to create'
     c.switch :s
-
-    c.desc 'Specify project filepath'
-    c.default_value '~/.'
     c.flag :f
+
     c.action do |global_options,options,args|
-
-      # Your command logic here
-
-      # If you have any errors, just raise them
-      # raise "that command made no sense"
-
-      puts "create command ran"
+      projpath = File.expand_path(global_options[:f] || PROJECT_DIR)
+                                                                                     
+      if Dir.exist?(projpath)                                                        
+        puts "Directory exists"                                                      
+      else                                                                           
+        print "#{projpath} does not exist. Do you want to create it? y or n: "       
+        choice = $stdin.gets.chomp                                                   
+                                                                                     
+        if choice.downcase == 'y'                                                    
+          directories = [                                                            
+            projpath,                                                                
+            "#{projpath}/projname.eca",                                                   
+          ]                                                                          
+                                                                                     
+          directories.each { |dir| Dir.mkdir(dir) unless Dir.exist?(dir) }           
+                                                                                     
+          system("ffmpeg -f lavfi -i anullsrc=channel_layout=stereo:sample_rate=48000 -t 5 '#{projpath}/audio/stems/recorded/input.wav'")                              
+          puts "#{projpath} created"                                                 
+        else                                                                         
+          puts "#{projpath} not created"                                             
+        end                                                                          
+      end                                                                            
     end
   end
 
-  desc 'Describe score here'
-  arg_name 'Describe arguments to score here'
+  desc 'Create a .ly file'
   command :score do |c|
+    c.desc 'Name of the lilypond file'
+
+    c.arg_name 'filename'
+    c.flag :filename
+
+    c.arg_name 'service'
+    c.flag :service
+
+    c.arg_name 'title'
+    c.flag :title
+
+    c.arg_name 'artist'
+    c.flag :artist
+
+    c.arg_name 'patch'
+    c.flag :patch
+
     c.action do |global_options,options,args|
-      puts "score command ran"
+      build_score(global_options,options,args)
+      render_score(global_options,options,args)
+    end
+  end
+
+  command :sounddesign do |c|
+    c.arg_name 'patch'
+    c.flag :patch
+
+    c.arg_name 'filename'
+    c.flag :filename
+  
+    c.arg_name 'csound'
+    c.flag :csound
+  
+    c.arg_name 'midichn'
+    c.flag :midichn
+
+    c.action do |global_options,options,args|
+     render_sound_design_file(global_options,options,args)
+     render_sound_audio_file(global_options,options,args)
     end
   end
 

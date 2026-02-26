@@ -19,4 +19,5 @@ spec = Gem::Specification.new do |s|
   s.add_development_dependency('rdoc')
   s.add_development_dependency('minitest')
   s.add_runtime_dependency('gli','~> 2.22.1')
+  s.add_development_dependency('aruba', '~> 2.3.0')
 end
